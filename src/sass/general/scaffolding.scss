@@ -1,0 +1,69 @@
+// Пример
+// @font-face {
+//   font-family: 'MyWebFont';
+//   font-style: normal;
+//   font-weight: 400;
+//   src: url('webfont.eot');
+//   src: url('webfont.eot?#iefix') format('embedded-opentype'),
+//        url('webfont.woff2') format('woff2'),
+//        url('webfont.woff') format('woff'),
+//        url('webfont.otf')  format('opentype'),
+//        url('webfont.ttf')  format('truetype'),
+//        url('webfont.svg#svgFontName') format('svg');
+// }
+
+@font-face {
+  font-family: "Yandex Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/YandexSansRegular.woff2") format("woff2"),
+       url("../fonts/YandexSansRegular.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Yandex Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("../fonts/YandexSansBold.woff2") format("woff2"),
+       url("../fonts/YandexSansBold.woff") format("woff");
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  font-family: "Yandex Sans", "Arial", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 18px;
+  background-color: #fcfcfc;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  text-decoration: none;
+}
+
+.visually-hidden {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+}

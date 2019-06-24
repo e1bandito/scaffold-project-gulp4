@@ -17,8 +17,10 @@ var imagemin = require('gulp-imagemin');
 var webp = require('gulp-webp');
 var del = require('del');
 var mqpacker = require('css-mqpacker');
+var babel = require('gulp-babel');
 
 
+// Автопрефиксы и минификация стилей
 gulp.task('style', function(done) {
   gulp.src('src/sass/style.scss')
     .pipe(plumber())
@@ -40,20 +42,28 @@ gulp.task('style', function(done) {
     done()
 });
 
+// Минификация js
 gulp.task('js', function() {
   return gulp.src(['src/js/*.js', '!js/**/*.min.js'])
     .pipe(rigger())
+    .pipe(babel({
+      presets: ['@babel/env']
+    }))
     .pipe(concat('main.js'))
     .pipe(uglify())
     .pipe(rename({suffix: '.min'}))
     .pipe(gulp.dest('build/js'));
 });
 
+
+// html
 gulp.task('html', function () {
   return gulp.src('src/*.html')
   .pipe(gulp.dest('build'));
 });
 
+
+// Оптимизация изображений
 gulp.task('images', function () {
   return gulp.src('src/img/**/*.{png,jpg,svg}')
   .pipe(imagemin([
@@ -64,16 +74,21 @@ gulp.task('images', function () {
   .pipe(gulp.dest('src/img'));
 });
 
+
+// Конвертация в webp
 gulp.task('webp', function () {
   return gulp.src('src/img/**/*.{png,jpg}')
   .pipe(webp({quality: 90}))
   .pipe(gulp.dest('src/img'));
 });
 
+
+// Очиска build
 gulp.task('clean', function () {
   return del('build');
 });
 
+// Копирование в build
 gulp.task('copy', function () {
   return gulp.src([
     'src/fonts/**/*.{woff,woff2}',
@@ -85,6 +100,7 @@ gulp.task('copy', function () {
   .pipe(gulp.dest('build'));
 });
 
+// Watcher
 gulp.task('serve', function() {
   server.init({
     server: 'build/',
@@ -98,4 +114,5 @@ gulp.task('serve', function() {
   gulp.watch('src/*.html', gulp.series('html')).on('change', server.reload);
 });
 
+// Сборка в build
 gulp.task('build', gulp.series('clean', 'copy', 'style', 'js'));

@@ -16,7 +16,7 @@ var uglify = require('gulp-uglify');
 var imagemin = require('gulp-imagemin');
 var webp = require('gulp-webp');
 var del = require('del');
-var mqpacker = require('css-mqpacker');
+var gcmq = require('gulp-group-css-media-queries');
 var babel = require('gulp-babel');
 
 
@@ -28,11 +28,9 @@ gulp.task('style', function(done) {
     .pipe(sassGlob())
     .pipe(sass())
     .pipe(postcss([
-      autoprefixer(),
-      mqpacker({
-        sort: true
-      })
+      autoprefixer()
     ]))
+    .pipe(gcmq())
     .pipe(gulp.dest('build/css'))
     .pipe(csso())
     .pipe(rename('style.min.css'))

@@ -89,7 +89,7 @@ gulp.task('clean', function () {
 // Копирование в build
 gulp.task('copy', function () {
   return gulp.src([
-    'src/fonts/**/*.{woff,woff2}',
+    'src/fonts/**/*.{eot,svg,ttf,woff,woff2}',
     'src/img/**',
     'src/*.html',
   ], {

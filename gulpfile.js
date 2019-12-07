@@ -57,7 +57,8 @@ gulp.task('js', function() {
 // html
 gulp.task('html', function () {
   return gulp.src('src/*.html')
-  .pipe(gulp.dest('build'));
+    .pipe(rigger())
+    .pipe(gulp.dest('build'));
 });
 
 

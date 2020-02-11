@@ -82,13 +82,14 @@ gulp.task('webp', function () {
   .pipe(gulp.dest('src/img'));
 });
 
+// svg-sprite
 gulp.task("sprite", function () {
   return gulp.src("src/img/sprite-*.svg")
   .pipe(svgstore({
     inlineSvg: true
   }))
   .pipe(rename("sprite.svg"))
-  .pipe(gulp.dest("build/img"));
+  .pipe(gulp.dest("src/img"));
 });
 
 // Очиска build
